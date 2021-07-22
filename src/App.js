@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import getData from './hooks/getData';
 
 function App() {
+  const { data, error, loading } = getData();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {error && <h1>There was an error</h1>}
+      {loading ? <h1>Loading</h1> : (
+        <h1>
+          I loaded
+          {' '}
+          {data[0].newCases}
+        </h1>
+      )}
     </div>
   );
 }
